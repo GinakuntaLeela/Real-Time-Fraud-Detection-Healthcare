@@ -78,14 +78,7 @@ flowchart LR
 
 ---
 
-## 📊 Results  
 
-- **Fraud Detection Accuracy**: 95%  
-- **Average Inference Latency**: 180 ms  
-- **Scalability**: Successfully processed **thousands of claims per second**.  
-- **Impact**: Enabled near real-time fraud prevention in Medicaid claims processing.  
-
----
 
 
 
