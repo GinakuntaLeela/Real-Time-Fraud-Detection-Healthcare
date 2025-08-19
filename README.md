@@ -63,17 +63,19 @@ Healthcare fraud costs billions each year. Batch audits are slow and reactive. T
 
 ## 🧱 Architecture (High Level)
 ```mermaid
+
 flowchart LR
-  A[Producers: HL7 or JSON claims] -->|PutRecord| B[Kinesis Data Streams]
-  B --> C[Lambda: Preprocess & Validate]
-  C --> D[SageMaker Realtime Endpoint (XGBoost)]
-  D --> E{Risk score >= threshold}
-  E -- Yes --> F[Alert bus / Quarantine queue]
-  E -- No --> G[Pass to adjudication]
-  C --> H[S3 raw and curated]
-  D --> I[CloudWatch metrics and logs]
-  H --> J[Batch retraining jobs]
+  A["Producers: HL7 or JSON claims"] -->|PutRecord| B["Kinesis Data Streams"]
+  B --> C["Lambda: Preprocess & Validate"]
+  C --> D["SageMaker realtime endpoint - XGBoost"]
+  D --> E{"Risk score gte threshold"}
+  E -- "Yes" --> F["Alert bus / Quarantine queue"]
+  E -- "No"  --> G["Pass to adjudication"]
+  C --> H["S3 raw and curated"]
+  D --> I["CloudWatch metrics and logs"]
+  H --> J["Batch retraining jobs"]
   J --> D
+
 
 ---
 
